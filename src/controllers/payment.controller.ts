@@ -44,7 +44,7 @@ export const debit: RequestHandler = async (req, res) => {
   successMsg(200, 'success', `${amount} has been removed from your account`, res)
 }
 
-// @desc debit endpoint
+// @desc show balance endpoint
 // @route POST /api/balance
 // @access Protected
 export const showBalance: RequestHandler = async (req, res) => {
@@ -54,7 +54,7 @@ export const showBalance: RequestHandler = async (req, res) => {
   successMsg(200, 'success', `your account balance is ${accountBalance}`, res)
 }
 
-// @desc debit endpoint
+// @desc send funds endpoint
 // @route POST /api/send/:id
 // @access Protected
 export const sendFunds: RequestHandler = async (req, res) => {
@@ -64,7 +64,7 @@ export const sendFunds: RequestHandler = async (req, res) => {
   if (req.user.id === receiverId) {
     return errMsg(400, 'error', 'you cannot send money to yourself', res)
   }
-  // get details of the sender from the auth middleware(i.e current logged in user)
+  // get details of the sender from the auth middleware(i.e current logged in user) and check if he has sufficient funds
   const sender = req.user
   if (!isTransactionViable(amount, sender.accountBalance)) {
     return errMsg(400, 'error', 'insufficient funds', res)

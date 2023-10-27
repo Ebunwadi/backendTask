@@ -6,6 +6,7 @@ import { db } from '../../config/firebase'
 chai.should()
 chai.use(chaiHttp)
 
+// kindly use a user already stored in the database as for some reasons the test user is not deleting immediately when the `after` hook function runs. so the hack i used was to use a user in the database then add the `before` hook function which deletes the user before running the test cases. The user off course would still be created when the signup test case runs
 const body = {
   username: 'test',
   email: 'test@gmail.com',
@@ -93,7 +94,7 @@ describe('auth test', () => {
   })
 
   // home route test
-  it('It should respond with hello world', (done) => {
+  it('It should give the right response', (done) => {
     chai
       .request(server)
       .get('/')
