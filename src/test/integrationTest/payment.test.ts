@@ -116,7 +116,7 @@ describe('payment test', async () => {
   })
 
   // test send funds to other users
-  it('It should show throw error if user wants to send money to himself', (done) => {
+  it('It should throw error if user wants to send money to himself', (done) => {
     chai
       .request(server)
       .post(`/api/send/${id}`)

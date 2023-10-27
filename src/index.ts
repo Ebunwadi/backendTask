@@ -4,14 +4,13 @@ import express, { Express, Request, Response } from 'express'
 import helmet from 'helmet'
 import cors from 'cors'
 import hpp from 'hpp'
+const xssClean = require('xss-clean')
 import auth from './routes/auth.route'
 import payment from './routes/payment.route'
 import { errorHandler, logger, notFound } from './middleware/loggerAndErrorHandler'
 import { corsOptions } from './config/corsOption'
 import { limiter } from './config/rateLimiter'
 import { successMsg } from './utils/responseMsgs'
-
-const xssClean = require('xss-clean')
 
 // initialize the express app
 const app: Express = express()
@@ -26,7 +25,7 @@ app.use(hpp()) // Prevent Http param pollution
 app.use(xssClean()) // Prevent XSS (Cross-SIte Scripting) attacks
 app.use(limiter) // Rate limiting to prevent abuse.
 
-app.use(express.json())
+app.use(express.json()) // parses req.body
 
 app.get('/', async (req: Request, res: Response) => {
   successMsg(200, 'success', 'healthcheck done!', res)

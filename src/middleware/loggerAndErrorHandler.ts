@@ -5,16 +5,17 @@ import path from 'path'
 import { NextFunction, Request, RequestHandler, Response } from 'express'
 import { errMsg } from '../utils/responseMsgs'
 
+// not found error handler
 export const notFound: RequestHandler = (req, res, next) => {
   const error = new Error(`${req.originalUrl} doesnt exist`)
   res.status(404)
   next(error)
 }
 
+// log events function
 const logEvents = async (message: string, logFileName: string) => {
   const dateTime = format(new Date(), 'yyyyMMdd\tHH:mm:ss')
   const logItem = `${dateTime}\t${uuid()}\t${message}\n`
-
   try {
     if (!fs.existsSync(path.join(__dirname, '..', 'logs'))) {
       await fsPromises.mkdir(path.join(__dirname, '..', 'logs'))
@@ -26,8 +27,8 @@ const logEvents = async (message: string, logFileName: string) => {
 }
 
 export const logger: RequestHandler = (req, res, next) => {
+  // logger middleware which uses the logevents function
   logEvents(`${req.method}\t${req.url}\t${req.headers.origin}`, 'reqLog.log')
-  // console.log(`${req.method} ${req.path}`)
   next()
 }
 
@@ -46,6 +47,7 @@ export const errorHandler = (err: Error, req: Request, res: Response, next: Next
   if (err.name === 'Not allowed by CORS') {
     return errMsg(403, 'error', err.message, res)
   }
+  // catch other errors
   const status = res.statusCode === 200 ? 500 : res.statusCode
   errMsg(status, 'error', err.message, res)
   next()

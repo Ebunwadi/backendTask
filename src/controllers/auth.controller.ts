@@ -13,13 +13,11 @@ export const signUp: RequestHandler = async (req, res) => {
   const { username, email, password } = req.body
   // check if email already exists
   const existingEmailSnapshot = await db.collection('users').where('email', '==', email).get()
-
   if (!existingEmailSnapshot.empty) {
     return errMsg(409, 'error', 'email already exist', res)
   }
   // hash password before storing in our database
   const passwordHashed = await bcrypt.hash(password, 10)
-
   const user = db.collection('users').doc()
   user.set({
     username,
@@ -30,6 +28,7 @@ export const signUp: RequestHandler = async (req, res) => {
 
   // sign the user's id with jsonwebtoken which would be later used for authorization
   const accessToken = await generateToken(user.id)
+  // send a welcome email to the user upon successful signing up
   sendEmail(email, 'welcome', 'Thanks for signing up on Atechcoins')
   successMsg(201, 'success', { accessToken }, res)
 }
@@ -56,7 +55,7 @@ export const login: RequestHandler = async (req, res) => {
   }
   userSnapshot.forEach((doc: any) => {
     user = {
-      id: doc.id,
+      id: doc.id, // attach id to the user object
       ...doc.data()
     }
   })

@@ -10,6 +10,7 @@ const signupSchema = Joi.object().keys({
 const paymentSchema = Joi.object().keys({
   amount: Joi.number().required()
 })
+
 export const validateSignUp = async (req: Request, res: Response, next: NextFunction) => {
   await signupSchema.validateAsync(req.body)
   next()
