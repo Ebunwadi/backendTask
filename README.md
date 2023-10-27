@@ -62,7 +62,7 @@ if you are using ` yarn install ` you may want to delete the ` package.lock.json
 - This project uses typescript-eslint and prettier as the code style guide and code formatter, feel free to use any other of your choice like airbnb etc
 - There is a `.env.sample` file to hint on some of the environment variables used in this app
 - This project used firestore for data persistence. there is a `serviceAccountSample.json` in the `src/config` which gives an example of the serviceAcccount files provided by firebase. visit [firebase](https://console.firebase.google.com), create a dummy app to get started
-- Run the test cases using ` npm run test ` which uses `mocha` for the test and `nyc` for test coverage. read the comment left on the `test/integrationTest/auth.ts` file before running the test
+- Run the test cases using ` npm run test ` which uses `mocha` for the test and `nyc` for test coverage. read the comment left on the `test/integrationTest/auth.ts` file before running the test. Also you can increase the rate limit in the `src/config/rateLimiter.ts`to allow you run the test cases a couple of times if you wish to.
 
 view the schema diagram below
 
