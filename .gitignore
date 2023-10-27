@@ -1,0 +1,7 @@
+node_modules
+.env
+logs
+src/logs
+dist
+.nyc_output
+src/config/serviceAccount.json
