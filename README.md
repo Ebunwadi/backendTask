@@ -64,6 +64,9 @@ if you are using ` yarn install ` you may want to delete the ` package.lock.json
 - This project used firestore for data persistence. there is a `serviceAccountSample.json` in the `src/config` which gives an example of the serviceAcccount files provided by firebase. visit [firebase](https://console.firebase.google.com), create a dummy app to get started
 - Run the test cases using ` npm run test ` which uses `mocha` for the test and `nyc` for test coverage. read the comment left on the `test/integrationTest/auth.ts` file before running the test
 
+view the schema diagram below
+- ![alt text](https://github.com/Ebunwadi/backendTask/blob/main/src/model/schema.png)
+
   
 
 
