@@ -39,7 +39,7 @@ userSchema
     requireed: true
 },
     accountBalance: {
-    type: string,
+    type: number,
     default: 0
 },
 }
