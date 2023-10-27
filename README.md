@@ -23,7 +23,8 @@ The API has these endpoints.
 ### This is how the Schema looks like
 
 ```
-userSchema{
+userSchema
+{
     username : {
     type: string,
     requireed: true
@@ -41,7 +42,6 @@ userSchema{
     type: string,
     default: 0
 },
-
 }
 
 ```
@@ -65,7 +65,8 @@ if you are using ` yarn install ` you may want to delete the ` package.lock.json
 - Run the test cases using ` npm run test ` which uses `mocha` for the test and `nyc` for test coverage. read the comment left on the `test/integrationTest/auth.ts` file before running the test
 
 view the schema diagram below
-- ![alt text](https://github.com/Ebunwadi/backendTask/blob/main/src/model/schema.png)
+
+ ![alt text](https://github.com/Ebunwadi/backendTask/blob/main/src/model/schema.png)
 
   
 
