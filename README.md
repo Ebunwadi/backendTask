@@ -1,7 +1,7 @@
 # A Payment System Service
 
-### project description.
-This is basically a payment system that allows users to send receive funds 
+### Project Description.
+This is basically a payment system that allows users to send receive and funds 
 
 [link to the api documentation with postman](https://documenter.getpostman.com/view/10653175/2s9YRGw8Ee)
 ## Routes
